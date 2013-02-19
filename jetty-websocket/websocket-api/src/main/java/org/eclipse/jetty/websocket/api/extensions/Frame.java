@@ -25,6 +25,11 @@ import java.nio.ByteBuffer;
  */
 public interface Frame
 {
+	/**
+	 * This is a nice model of how to implement a packet processor - this pattern is used everywhere.
+	 * @author robc
+	 *
+	 */
     public static enum Type
     {
         CONTINUATION((byte)0x00),

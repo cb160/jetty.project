@@ -62,6 +62,11 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
 {
     private static final Logger LOG = Log.getLogger(WebSocketServerFactory.class);
 
+    /**
+     * RC - I didnt realise that ThreadLocal existed since 1.2 - or that Doug Lea and Josh Bloch were the 
+     * authors. It's a fascinating class - thread locals are stored in a map on each thread - but the map
+     * implementation is custom - something to read int he future
+     */
     private static final ThreadLocal<UpgradeContext> ACTIVE_CONTEXT = new ThreadLocal<>();
 
     public static UpgradeContext getActiveUpgradeContext()
@@ -123,6 +128,13 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
         StringBuilder rv = new StringBuilder();
         for (int v : versions)
         {
+        	/**
+        	 * This is a nice approch to something that is trivial in python. Python lets you do
+        	 * ", ".join(list) which does the right thing. THe catch for the first or last element
+        	 * is a good approach and stringbuilder.length() is a simple integer lookup and 
+        	 * is therefore nice and fast.
+        	 * 
+        	 */
             if (rv.length() > 0)
             {
                 rv.append(", ");
@@ -135,6 +147,9 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
     @Override
     public boolean acceptWebSocket(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
+    	/**
+    	 * So a websocket request/response has a http request/response - it isn't a http request/response
+    	 */
         ServletWebSocketRequest sockreq = new ServletWebSocketRequest(request);
         ServletWebSocketResponse sockresp = new ServletWebSocketResponse(response);
 
@@ -215,6 +230,11 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
             throw new WebSocketException("No WebSockets have been registered with the factory.  Cannot use default implementation of WebSocketCreator.");
         }
 
+        /**
+         * THis is a nice approach. The default case of a single handler works with the class but inheriting class can register multiple handlers.
+         * By storing the socketclasses in a list, it makes it easier for inheriting classes to 1) work and 2) continue to work when the 
+         * inheriting class has a bug
+         */
         if (registeredSocketClasses.size() > 1)
         {
             LOG.warn("You have registered more than 1 websocket object, and are using the default WebSocketCreator! Using first registered websocket.");
@@ -295,6 +315,9 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
             { null };
         }
         protocol = protocol.trim();
+        /**
+         * the protocol == null check is redundant - the length check is required
+         */
         if ((protocol == null) || (protocol.length() == 0))
         {
             return new String[]
@@ -350,6 +373,8 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
      * This method will not normally return, but will instead throw a UpgradeConnectionException, to exit HTTP handling and initiate WebSocket handling of the
      * connection.
      * 
+     * RC: No it doesn't - it returns true or false
+     * 
      * @param request
      *            The request to upgrade
      * @param response
@@ -360,6 +385,11 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
      */
     public boolean upgrade(ServletWebSocketRequest request, ServletWebSocketResponse response, EventDriver driver) throws IOException
     {
+    	/**
+    	 * This block of code is a duplicate of the logic in the isUpgradeRequest block
+    	 * This version throws exceptions rather than log and return false
+    	 */
+    	
         if (!"websocket".equalsIgnoreCase(request.getHeader("Upgrade")))
         {
             throw new IllegalStateException("Not a 'WebSocket: Upgrade' request");

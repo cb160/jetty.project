@@ -22,6 +22,10 @@ import org.eclipse.jetty.websocket.api.UpgradeRequest;
 import org.eclipse.jetty.websocket.api.UpgradeResponse;
 import org.eclipse.jetty.websocket.common.LogicalConnection;
 
+/*
+ * Nice clean pojo - labelling as a context object is nice.
+ * Context is just state - no logic.
+ */
 public class UpgradeContext
 {
     private LogicalConnection connection;

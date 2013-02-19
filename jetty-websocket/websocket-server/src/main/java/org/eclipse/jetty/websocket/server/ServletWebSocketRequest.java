@@ -76,6 +76,10 @@ public class ServletWebSocketRequest extends UpgradeRequest
         // Parse Sub Protocols
         Enumeration<String> protocols = request.getHeaders("Sec-WebSocket-Protocol");
         List<String> subProtocols = new ArrayList<>();
+        /**
+         * What is protocol for here - looks like it should be removed - perhaps
+         * candidate is now used instead
+         */
         String protocol = null;
         while ((protocol == null) && (protocols != null) && protocols.hasMoreElements())
         {
@@ -92,6 +96,12 @@ public class ServletWebSocketRequest extends UpgradeRequest
         while (e.hasMoreElements())
         {
             Iterator<String> extTokenIter = QuoteUtil.splitAt(e.nextElement(),",");
+            /**
+             * The hasNext method leaves a memento so that 
+             *  - multiple calls to it without next being called are fast
+             *  - next can call it without the method having to do the check again
+             *  nice approach
+             */
             while (extTokenIter.hasNext())
             {
                 String extToken = extTokenIter.next();
@@ -115,6 +125,11 @@ public class ServletWebSocketRequest extends UpgradeRequest
     {
         Map<String, Object> attributes = new HashMap<String, Object>();
 
+        /**
+         * Interesting that here the author chooses to extract the names into a list but further
+         * up in the class, prefers to use the enumerated values directly, assumably
+         * to save the cost of creating a temporary list. This looks cleaner IMO
+         */
         for (String name : Collections.list(req.getAttributeNames()))
         {
             attributes.put(name,req.getAttribute(name));
@@ -145,7 +160,11 @@ public class ServletWebSocketRequest extends UpgradeRequest
     {
         return this.req.getSession();
     }
-
+   
+    /**
+     * This is a cut and paste copy of the method in WebSocketServerFactort - including
+     * the redundant check on procol==null
+     */
     protected String[] parseProtocols(String protocol)
     {
         if (protocol == null)

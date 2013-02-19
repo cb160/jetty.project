@@ -95,6 +95,12 @@ public class QuoteUtil
         @Override
         public boolean hasNext()
         {
+        	/**
+             * The hasNext method leaves a memento so that 
+             *  - multiple calls to it without next being called are fast
+             *  - next can call it without the method having to do the check again
+             *  nice approach
+             */
             // already found a token
             if (hasToken)
             {
@@ -200,6 +206,7 @@ public class QuoteUtil
             return hasToken;
         }
 
+        
         @Override
         public String next()
         {
