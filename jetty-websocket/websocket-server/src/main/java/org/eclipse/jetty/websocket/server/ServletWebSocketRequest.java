@@ -76,7 +76,6 @@ public class ServletWebSocketRequest extends UpgradeRequest
         // Parse Sub Protocols
         Enumeration<String> protocols = request.getHeaders("Sec-WebSocket-Protocol");
         List<String> subProtocols = new ArrayList<>();
-        String protocol = null;
         while ((protocol == null) && (protocols != null) && protocols.hasMoreElements())
         {
             String candidate = protocols.nextElement();
@@ -154,7 +153,7 @@ public class ServletWebSocketRequest extends UpgradeRequest
             { null };
         }
         protocol = protocol.trim();
-        if ((protocol == null) || (protocol.length() == 0))
+        if (protocol.length() == 0)
         {
             return new String[]
             { null };

@@ -294,7 +294,8 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
             { null };
         }
         protocol = protocol.trim();
-        if ((protocol == null) || (protocol.length() == 0))
+
+        if (protocol.length() == 0)
         {
             return new String[]
             { null };
@@ -346,9 +347,7 @@ public class WebSocketServerFactory extends ContainerLifeCycle implements WebSoc
     /**
      * Upgrade the request/response to a WebSocket Connection.
      * <p>
-     * This method will not normally return, but will instead throw a UpgradeConnectionException, to exit HTTP handling and initiate WebSocket handling of the
-     * connection.
-     *
+     * @return True is connection upgraded, otherwise false
      * @param request
      *            The request to upgrade
      * @param response
