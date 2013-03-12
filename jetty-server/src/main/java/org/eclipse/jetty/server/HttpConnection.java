@@ -318,6 +318,7 @@ public class HttpConnection extends AbstractConnection implements Runnable, Http
 
         ByteBuffer header = null;
         ByteBuffer chunk = null;
+        //RC I had never seen a labelled break before
         out: while (true)
         {
             HttpGenerator.Result result = _generator.generateResponse(info, header, chunk, content, lastContent);
@@ -404,6 +405,7 @@ public class HttpConnection extends AbstractConnection implements Runnable, Http
                     }
                     if (chunk!=null)
                         _bufferPool.release(chunk);
+                    // RC and this is where its used 
                     break out;
                 }
                 case CONTINUE:

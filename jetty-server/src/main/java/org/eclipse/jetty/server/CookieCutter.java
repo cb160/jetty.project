@@ -26,6 +26,7 @@ import org.eclipse.jetty.util.QuotedStringTokenizer;
 import org.eclipse.jetty.util.log.Log;
 import org.eclipse.jetty.util.log.Logger;
 
+// RC - Nice optimisation
 
 /* ------------------------------------------------------------ */
 /** Cookie parser

@@ -31,6 +31,12 @@ import org.eclipse.jetty.util.component.Dumpable;
 import org.eclipse.jetty.util.statistic.CounterStatistic;
 import org.eclipse.jetty.util.statistic.SampleStatistic;
 
+/**
+ * RC - Great - a nice statistics class - using a counter and sampling statistic classes
+ * sampling one calculates mean based on algorhthm in knuth - extra credit for the reference.
+ * @author robc
+ *
+ */
 @ManagedObject("Connector Statistics")
 public class ConnectorStatistics extends AbstractLifeCycle implements Dumpable, Connection.Listener
 {

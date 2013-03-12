@@ -32,6 +32,8 @@ import javax.servlet.http.HttpServletResponse;
  * cycles. Authentication might not yet be checked or it might be checked
  * and failed, checked and deferred or succeeded. 
  * 
+ * RC: This seems a bit complicated - I wonder if the various states are documented
+ * elsewhere
  */
 public interface Authentication
 {

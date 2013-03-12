@@ -26,6 +26,12 @@ import org.eclipse.jetty.util.TypeUtil;
 import org.eclipse.jetty.util.component.ContainerLifeCycle;
 import org.eclipse.jetty.util.component.Dumpable;
 
+/**
+ * Dumpable is quite a nice idea - be able to dump stuff to strings for exposure
+ * in jms, logs, etc.
+ * @author robc
+ *
+ */
 public class ClassLoaderDump implements Dumpable
 {
     final ClassLoader _loader;
@@ -41,6 +47,9 @@ public class ClassLoaderDump implements Dumpable
         return ContainerLifeCycle.dump(this);
     }
 
+    /**
+     * Indent makes pretty printing possible - allows nice object graph creation
+     */
     @Override
     public void dump(Appendable out, String indent) throws IOException
     {

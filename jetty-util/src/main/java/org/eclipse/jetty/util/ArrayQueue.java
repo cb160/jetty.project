@@ -28,6 +28,8 @@ import java.util.Queue;
  * <p/>
  * This partial Queue implementation (also with {@link #remove()} for stack operation)
  * is backed by a growable circular array.
+ * 
+ * RC - If I was going to read any more of the jetty codebase - it would be the jetty-util project
  *
  * @param <E>
  */

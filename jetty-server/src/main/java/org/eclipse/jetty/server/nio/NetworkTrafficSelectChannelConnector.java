@@ -42,6 +42,8 @@ import org.eclipse.jetty.util.thread.Scheduler;
  * <p>A specialized version of {@link ServerConnector} that supports {@link NetworkTrafficListener}s.</p>
  * <p>{@link NetworkTrafficListener}s can be added and removed dynamically before and after this connector has
  * been started without causing {@link ConcurrentModificationException}s.</p>
+ * RC -  This appears only to be used in tests -strange to create a package with only one class
+ * just for testing...
  */
 public class NetworkTrafficSelectChannelConnector extends ServerConnector
 {

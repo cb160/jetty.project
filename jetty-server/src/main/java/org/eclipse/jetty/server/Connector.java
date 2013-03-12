@@ -33,6 +33,9 @@ import org.eclipse.jetty.util.thread.Scheduler;
  * <p>A {@link Connector} accept connections and data from remote peers,
  * and allows applications to send data to remote peers, by setting up
  * the machinery needed to handle such tasks.</p>
+ * 
+ * Perhaps unsurprisingly, the type hierarchy of connector mirrors that
+ * of connectionfactory closely
  */
 @ManagedObject("Connector Interface")
 public interface Connector extends LifeCycle, Graceful

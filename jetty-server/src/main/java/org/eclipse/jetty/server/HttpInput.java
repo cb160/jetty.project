@@ -42,6 +42,12 @@ import org.eclipse.jetty.util.log.Logger;
 public abstract class HttpInput<T> extends ServletInputStream
 {
     private final static Logger LOG = Log.getLogger(HttpInput.class);
+    /** RC A custom container using a circular array.
+     * Interesting features
+     *  - unsafe methods - who needs synchronoisation
+     *  - Grow, add and remove can be very expensive
+     * 
+     */
     private final ArrayQueue<T> _inputQ = new ArrayQueue<>();
     private boolean _earlyEOF;
     private boolean _inputEOF;

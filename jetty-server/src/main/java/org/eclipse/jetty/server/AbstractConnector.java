@@ -163,6 +163,7 @@ public abstract class AbstractConnector extends ContainerLifeCycle implements Co
             ConnectionFactory... factories)
     {
         _server=server;
+        //RC Compact initialisation - but requires some effort to read.
         _executor=executor!=null?executor:_server.getThreadPool();
         _scheduler=scheduler!=null?scheduler:new TimerScheduler();
         _byteBufferPool = pool!=null?pool:new ArrayByteBufferPool();

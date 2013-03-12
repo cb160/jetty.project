@@ -22,6 +22,9 @@ import java.nio.ByteBuffer;
 
 /**
  * <p>An implementation of HttpInput using {@link ByteBuffer} as items.</p>
+ * RC This class seems to be untemplating the HttpInput class so that a ByteBuffer is used
+ * OK -but as this is the only implementation - what's the point?
+ * Perhaps, this is the remainder of an earlier port to bytebuffer maybe
  */
 public class ByteBufferHttpInput extends HttpInput<ByteBuffer>
 {

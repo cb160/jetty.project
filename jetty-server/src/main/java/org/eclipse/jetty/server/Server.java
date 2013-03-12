@@ -353,6 +353,9 @@ public class Server extends HandlerWrapper implements Attributes
         if (isDumpBeforeStop())
             dumpStdErr();
 
+        // RC - Nice idea to make sure things really get shutdown
+        // This allows the server to be embedded and not just behave
+        // badly on shutdown but do the right thing
         MultiException mex=new MultiException();
 
         // list if graceful futures
@@ -384,6 +387,7 @@ public class Server extends HandlerWrapper implements Attributes
                 }
                 catch (Exception e)
                 {
+                	// RC accumalate the exceptions
                     mex.add(e.getCause());
                 }
             }

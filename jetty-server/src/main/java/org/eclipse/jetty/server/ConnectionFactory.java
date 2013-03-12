@@ -23,6 +23,7 @@ import org.eclipse.jetty.io.Connection;
 import org.eclipse.jetty.io.EndPoint;
 
 /**
+ * RC - Nice documentation
  * <p>A Factory to create {@link Connection} instances for {@link Connector}s.</p>
  * <p>A Connection factory is responsible for instantiating and configuring a {@link Connection} instance
  * to handle an {@link EndPoint} accepted by a {@link Connector}.</p>

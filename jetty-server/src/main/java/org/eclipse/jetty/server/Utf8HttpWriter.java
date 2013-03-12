@@ -26,7 +26,7 @@ import java.io.IOException;
  *
  * The UTF-8 encoding is done by this class and no additional
  * buffers or Writers are used.
- * The UTF-8 code was inspired by http://javolution.org
+ * The UTF-8 code was inspired by http://javolution.org // RC nice shoutout to the source
  */
 public class Utf8HttpWriter extends HttpWriter
 {
@@ -163,6 +163,9 @@ public class Utf8HttpWriter extends HttpWriter
                     }
                     else
                     {
+                    	// RC Fallback to the cortex default for 2 bytes!
+                    	// if you don't know whats going ton here, read the chapter on
+                    	// unicode in 'Building Scalable Websites'- it's the BOM :)
                         buffer[bytes++]=(byte)('?');
                     }
 
